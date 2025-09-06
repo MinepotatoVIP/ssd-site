@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Selles Diététiques</title>
+  <style>
+    :root{
+      --bg1:#071014; --bg2:#0f1116;
+      --accent1:#00ffa8; --accent2:#ff5dc8; --muted:#9aa9ad;
+      --card:#0f1316; --glass:rgba(255,255,255,.03);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, Roboto, Arial, sans-serif;color:#eaf2f2;background:linear-gradient(180deg,var(--bg1),var(--bg2));-webkit-font-smoothing:antialiased}
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;border-bottom:1px solid rgba(255,255,255,.03)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 8px 28px rgba(0,255,168,.12)}
+    .logo span{font-size:20px}
+    .title{font-weight:700}
+
+    .container{max-width:1100px;margin:28px auto;padding:0 20px}
+
+    .hero{display:flex;gap:24px;align-items:center}
+    .hero-left{flex:1}
+    .hero-right{width:420px}
+    h1{font-size:34px;margin:0;line-height:1.02}
+
+    /* gradient text for the line "Pourquoi choisir SSD" */
+    .gradient-title{
+      font-size:28px;margin:0 0 12px;padding:6px 0;font-weight:800;background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent
+    }
+
+    p.lead{color:var(--muted);margin-top:12px}
+
+    /* stats cards */
+    .stats{display:flex;gap:14px;margin-top:18px}
+    .stat{flex:1;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,.04);min-height:96px}
+    .stat h3{margin:0;font-size:14px;color:var(--muted)}
+    .stat .value{margin-top:8px;font-weight:800;font-size:18px}
+    .label-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(0,255,168,.08);color:var(--accent1);font-weight:700;font-size:12px}
+
+    /* commander card area keeps earlier design */
+    .card{background:var(--card);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,.03);box-shadow:0 10px 30px rgba(0,0,0,.5);}
+
+    form input, form button{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid rgba(255,255,255,.06);background:transparent;color:#eaf2f2}
+    form button{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#071014;font-weight:800;border:none;cursor:pointer}
+
+    footer{margin-top:36px;padding:24px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.03)}
+
+    @media(max-width:900px){.hero{flex-direction:column}.hero-right{width:100%}.stats{flex-direction:column}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo"><span>💩</span></div>
+      <div>
+        <div class="title">SSD — Super Selles Diététiques</div>
+        <div style="font-size:12px;color:var(--muted)">La puissance organique !</div>
+      </div>
+    </div>
+    <div><button style="padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.04);background:transparent;color:#eaf2f2;">Commander</button></div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="hero-left">
+        <h1>Super Selles Diététiques — le futur du transit, sérieusement (mais amusant)</h1>
+        <p class="lead">La fibre rencontre la performance. Un concept naturellement innovant pour un futur écologique et ergonomique. Plus léger, plus rapide, plus responsable — participez à la révolution organique.</p>
+
+        <div style="margin-top:20px">
+          <h2 class="gradient-title">Pourquoi choisir <span style="background:linear-gradient(90deg,var(--accent1),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;">SSD</span> ?</h2>
+          <div class="stats">
+            <div class="stat">
+              <h3>Vitesse d'exécution</h3>
+              <div class="value">⚡ Instantanée<span style="margin-left:8px;font-weight:600;color:var(--muted)"> (selon régime riche en fibres)</span></div>
+            </div>
+            <div class="stat">
+              <h3>Empreinte carbone</h3>
+              <div class="value">♻︎ Négative<span style="margin-left:8px;font-weight:600;color:var(--muted)"> (bio & recyclable)</span></div>
+            </div>
+            <div class="stat">
+              <h3>Compatibilité</h3>
+              <div class="value">🧬 Universelle<span style="margin-left:8px;font-weight:600;color:var(--muted)"> (adaptée à tous)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card">
+          <h3 style="margin:0 0 8px">Précommandez votre SSD</h3>
+          <form id="orderForm" onsubmit="event.preventDefault(); generateCode();">
+            <input id="nom" type="text" placeholder="Nom complet" required>
+            <input id="email" type="email" placeholder="Email" required>
+            <input id="quantite" type="number" min="1" value="1" required>
+            <button type="submit">Commander</button>
+          </form>
+
+          <div id="fakeEmail" style="display:none;margin-top:16px;padding:12px;background:#0b0f12;border-radius:8px;border:1px solid rgba(255,255,255,.02);">
+            <strong style="color:var(--accent1)">📧  SIS Mail</strong>
+            <p style="margin:8px 0 0">De: support@sis.org<br>À: <span id="userEmail"></span><br><b>Sujet:</b> Code de confirmation</p>
+            <hr style="border:none;border-top:1px solid rgba(255,255,255,.03)">
+            <p>Bonjour <span id="userName"></span>,</p>
+            <p>Votre code de confirmation est :</p>
+            <div id="codeDisplay" style="font-weight:900;color:var(--accent1);font-size:22px"></div>
+          </div>
+
+          <div id="verification" style="display:none;margin-top:12px">
+            <input id="codeInput" type="text" placeholder="Entrez le code reçu">
+            <button onclick="verifyCode()">Vérifier</button>
+          </div>
+
+          <div id="confirmation" style="display:none;margin-top:12px;text-align:center;color:var(--accent1)">
+            <h3>✅ Merci d'avoir commandé !</h3>
+            <p>Vous faîtes une grande aide à la <b>S.I.S</b> (Société Internationale des Selles).</p>
+            <p><i>💩 Notre caca, notre avenir 🌍</i></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div style="max-width:1100px;margin:0 auto;padding:20px;text-align:center;color:var(--muted)">© 2025 Société Internationale des Selles — « Notre caca, notre avenir ! »</div>
+  </footer>
+
+  <script>
+    let generatedCode = null;
+    function generateCode(){
+      generatedCode = Math.floor(10000 + Math.random()*90000);
+      document.getElementById('userName').innerText = document.getElementById('nom').value;
+      document.getElementById('userEmail').innerText = document.getElementById('email').value;
+      document.getElementById('codeDisplay').innerText = generatedCode;
+      document.getElementById('orderForm').style.display='none';
+      document.getElementById('fakeEmail').style.display='block';
+      document.getElementById('verification').style.display='block';
+    }
+    function verifyCode(){
+      const userCode = document.getElementById('codeInput').value;
+      if(userCode == generatedCode){
+        document.getElementById('verification').style.display='none';
+        document.getElementById('fakeEmail').style.display='none';
+        document.getElementById('confirmation').style.display='block';
+      } else { alert('❌ Code incorrect. Vérifiez votre email.'); }
+    }
+  </script>
+</body>
+</html>
